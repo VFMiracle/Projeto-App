@@ -12,14 +12,14 @@ class NotificationManager{
   factory NotificationManager() => _ntfctnManager;
 
   void startup() async {
-    const  AndroidInitializationSettings androidIntlztnSettings = AndroidInitializationSettings('mipmap/ic_launcher');
-    const InitializationSettings intlztnSettings = InitializationSettings(android: androidIntlztnSettings);
+    const  AndroidInitializationSettings androidInitializationSettings = AndroidInitializationSettings('mipmap/ic_launcher');
+    const InitializationSettings initializationSettings = InitializationSettings(android: androidInitializationSettings);
 
-    await flutterLocalNtfctnsPlugin.initialize(intlztnSettings);
+    await flutterLocalNtfctnsPlugin.initialize(settings: initializationSettings);
   }
 
   void cancelCronometer(){
-    flutterLocalNtfctnsPlugin.cancel(0);
+    flutterLocalNtfctnsPlugin.cancel(id: 0);
   }
 
   void displayCronometer(String name, String counterStatus) {
@@ -34,12 +34,12 @@ class NotificationManager{
       importance: Importance.low,
       styleInformation: BigTextStyleInformation(''),
     );
-    const NotificationDetails crnmtrDetails = NotificationDetails(android: androidCrnmtrDetails);
+    const NotificationDetails cronometerDetails = NotificationDetails(android: androidCrnmtrDetails);
     flutterLocalNtfctnsPlugin.show(
-      0,
-      name,
-      counterStatus,
-      crnmtrDetails,
+      id: 0,
+      title: name,
+      body: counterStatus,
+      notificationDetails: cronometerDetails,
     );
   }
 }
